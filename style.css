@@ -1,0 +1,10 @@
+table{
+    background: pink;
+    margin:15px;
+}
+table tr:hover{
+    background:white;
+}
+table tr thead th{
+    text-align: center;
+}
