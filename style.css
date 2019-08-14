@@ -11,8 +11,8 @@ table td:hover{
 }
 th{
     color: black;
-    padding: 10px;
+    padding:10px;
 }
-tr{
-    padding: 100px;
+td{
+    text-align: center;
 }
