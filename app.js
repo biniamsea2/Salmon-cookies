@@ -1,6 +1,9 @@
 'use strict';
 
 var time = ['6am', ' 7am', ' 8am', ' 9am', ' 10am', ' 11am', ' 12pm', ' 1pm', ' 2pm', ' 3pm', ' 4pm', ' 5pm', ' 6pm', ' 7pm', ' 8pm'];
+var elTable = document.getElementById('tableChart')
+var listOfPlaces = []; 
+
 
 function Store(storeName, minCusthour, maxCusthour, avgCookSale) {//only need to add the things that are changing between each location.But I added them all just becuase. If you want to remove you must remove the ones under this comment as well.
     this.storeName = storeName;
@@ -9,77 +12,75 @@ function Store(storeName, minCusthour, maxCusthour, avgCookSale) {//only need to
     this.avgCookSale = avgCookSale;
     this.time = time;
     this.avgCusthour = [];
-    this.avgCookhour = [];
     this.totalCookies = 0;
-    Store.listOfPlaces.push(this); //push all new Stores into the listOfPlaces array.
+    listOfPlaces.push(this); //push all new stores into the listOfPlaces array
+
 
     // creates avg customer for each hour from 6am to 8pm.
     this.custHour = function () {
         for (var i = 0; i < time.length; i++) {
-            var custOnehour = Math.floor(Math.random() * (this.maxCusthour - this.minCusthour + 1)) + this.minCusthour
+            var custOnehour = Math.floor(Math.random() * (this.maxCusthour - this.minCusthour + 1) + this.minCusthour);
             this.avgCusthour.push(custOnehour);
         }
     };
     this.cookiesPerCust = function () {
         for (var j = 0; j < time.length; j++) {
-            console.log(this.avgCusthour[j])
             this.totalCookies += this.avgCusthour[j];
         }
     };
-    // Creates the table and appends it to the DOM
-    this.listStuff = function () {
+    //creates 
+    this.showData = function () {
+        var storeRow = document.createElement('tr');
+        var elCell = document.createElement('td');
+        elCell.textContent = this.storeName;
+        storeRow.appendChild(elCell);
+
+        for (var i = 0; i < time.length; i++) {
+            var hourSale = document.createElement('td');
+            hourSale.textContent = this.avgCusthour[i];
+            storeRow.appendChild(hourSale);
+        }
+
+        elTable.appendChild(storeRow);
     };
-}
+};
 
 var tableHeader = function () {
-//Header, columns, rows, and data
-    var all = document.createElement('table');
+    //creates the header for the table
     var elRow = document.createElement('tr');
     var elTh = document.createElement('th');
     elTh.textContent = 'Store Names';
     elRow.appendChild(elTh);
 
-    for (i = 0; i < time.length; i++) {
+    for (var i = 0; i < time.length; i++) {
         var temp = document.createElement('th');
         temp.textContent = time[i];
         elRow.appendChild(temp);
     }
+
     var dailyTotal = document.createElement('th');
     dailyTotal.textContent = 'Daily Total';
     elRow.appendChild(dailyTotal);
+    elTable.appendChild(elRow);
+};
 
-    var pike2 = document.createElement('tr');
-    pike2.textContent = 'First and Pike';
-    elTh.appendChild(pike2);
+var tableFooter = function () {
+    var elRow = document.createElement('tr');
+    var elTh = document.createElement('th');
+    elTh.textContent = 'Total Cookies: ';
+    elRow.appendChild(elTh);
 
-    var seaTac2 = document.createElement('tr');
-    seaTac2.textContent = 'SeaTac Airport';
-    elTh.appendChild(seaTac2);
+    for (i = 0; i < time.length; i++) { //calculate total for each store
+        var total = document.createElement('th');
+        total.textContent = 'total';
+        elRow.appendChild(total);
 
-    var seattle2 = document.createElement('tr');
-    seattle2.textContent = 'Seattle Center';
-    elTh.appendChild(seaTac2);
-
-    var cap2 = document.createElement('tr');
-    cap2.textContent = 'Capitol Hill';
-    elTh.appendChild(cap2);
-
-    var alki2 = document.createElement('tr');
-    alki2.textContent = 'Alki Beach';
-    elTh.appendChild(alki2);
-
-    var totalCookies2 = document.createElement('tr');
-    totalCookies2.textContent = 'Total Cookies';
-    elTh.appendChild(totalCookies2);
-
-
-    all.appendChild(elRow);
-
-    document.body.appendChild(all);
+    }
+    elTable.appendChild(elRow);
 
 }
 
-Store.listOfPlaces = []; //Created listOfPlaces array and set it empty.
+//Created listOfPlaces array and set it empty.
 
 //Don't need 'var' because you can find each Store in the array ex:([1,2,3]), but added it anyways. Only added the things that are changin in the parameters for each place.
 var pike = new Store('First and Pike', 23, 65, 6.3);
@@ -89,10 +90,10 @@ var cap = new Store('Capitol Hill', 20, 38, 2.3);
 var alki = new Store('Alki Beach', 2, 16, 4.6);
 
 //made for loop that will console.log each Store in the listOfPlaces array.
-for (var i = 0; i < Store.listOfPlaces.length; i++) {
-    Store.listOfPlaces[i].custHour();
-    Store.listOfPlaces[i].cookiesPerCust();
-    Store.listOfPlaces[i].listStuff();
-}
-
 tableHeader();
+for (var i = 0; i < listOfPlaces.length; i++) {
+    listOfPlaces[i].custHour();
+    listOfPlaces[i].cookiesPerCust();
+    listOfPlaces[i].showData();
+};
+tableFooter();
