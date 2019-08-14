@@ -1,0 +1,18 @@
+html{
+    background: rgb(255, 246, 246);
+}
+table{
+    background: pink;
+    margin:15px;
+    padding: 20px;
+}
+table td:hover{
+    background:rgb(41, 248, 0);
+}
+th{
+    color: black;
+    padding: 10px;
+}
+tr{
+    padding: 100px;
+}
