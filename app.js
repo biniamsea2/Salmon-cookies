@@ -2,7 +2,7 @@
 
 var time = ['6am', ' 7am', ' 8am', ' 9am', ' 10am', ' 11am', ' 12pm', ' 1pm', ' 2pm', ' 3pm', ' 4pm', ' 5pm', ' 6pm', ' 7pm', ' 8pm'];
 var elTable = document.getElementById('tableChart')
-var listOfPlaces = []; 
+var listOfPlaces = [];
 
 
 function Store(storeName, minCusthour, maxCusthour, avgCookSale) {//only need to add the things that are changing between each location.But I added them all just becuase. If you want to remove you must remove the ones under this comment as well.
@@ -13,38 +13,61 @@ function Store(storeName, minCusthour, maxCusthour, avgCookSale) {//only need to
     this.time = time;
     this.avgCusthour = [];
     this.totalCookies = 0;
-    listOfPlaces.push(this); //push all new stores into the listOfPlaces array
+}
 
+function formData(event); {
+    event.preventDefault();
+    var storeName = event.target.storeName.value;
+    var minCusthour = event.target.minCusthour.value;
+    var maxCusthour = event.target.maxCusthour.value;
+    var avgCookSale = event.target.avgCookSale.value;
 
-    // creates avg customer for each hour from 6am to 8pm.
-    this.custHour = function () {
-        for (var i = 0; i < time.length; i++) {
-            var custOnehour = Math.floor(Math.random() * (this.maxCusthour - this.minCusthour + 1) + this.minCusthour);
-            this.avgCusthour.push(custOnehour);
-        }
-    };
-    this.cookiesPerCust = function () {
-        for (var j = 0; j < time.length; j++) {
-            this.totalCookies += this.avgCusthour[j];
-        }
-    };
-    //creates 
-    this.showData = function () {
-        var storeRow = document.createElement('tr');
-        var elCell = document.createElement('td');
-        elCell.textContent = this.storeName;
-        storeRow.appendChild(elCell);
+    listOfPlaces.push(new Store(storeName, minCusthour, maxCusthour, avgCookSale));
 
-        for (var i = 0; i < time.length; i++) {
-            var hourSale = document.createElement('td');
-            hourSale.textContent = this.avgCusthour[i];
-            storeRow.appendChild(hourSale);
-        }
+    createTable();
+    form.reset();
+    console.log('history', listOfPlaces)
+}
 
-        elTable.appendChild(storeRow);
-    };
+function CreateTable() {
+    var row;
+    for (var i = 0; i < listOfPlaces.length; i++) {
+        row = document.createElement('tr');
+        row.innerHTML = '<td>' + listOfPlaces[i].storeName + '</td>' +
+            '<td>' + listOfPlaces[i].minCusthour + '</td>' +
+            '<td>' + listOfPlaces[i].maxCusthour + '</td>' +
+            '<td>' + listOfPlaces[i].avgCookSale + '</td>'
+    }
+    elTable.appendChild(row);
+}
+form.addEventListner('Submit', formData);
+
+// creates avg customer for each hour from 6am to 8pm.
+this.custHour = function () {
+    for (var i = 0; i < time.length; i++) {
+        var custOnehour = Math.floor(Math.random() * (this.maxCusthour - this.minCusthour + 1) + this.minCusthour);
+        this.avgCusthour.push(custOnehour);
+    }
 };
+this.cookiesPerCust = function () {
+    for (var j = 0; j < time.length; j++) {
+        this.totalCookies += this.avgCusthour[j];
+    }
+};
+this.showData = function () {
+    var storeRow = document.createElement('tr');
+    var elCell = document.createElement('td');
+    elCell.textContent = this.storeName;
+    storeRow.appendChild(elCell);
 
+    for (var i = 0; i < time.length; i++) {
+        var hourSale = document.createElement('td');
+        hourSale.textContent = this.avgCusthour[i];
+        storeRow.appendChild(hourSale);
+    }
+
+    elTable.appendChild(storeRow);
+};
 var tableHeader = function () {
     //creates the header for the table
     var elRow = document.createElement('tr');
@@ -77,10 +100,7 @@ var tableFooter = function () {
 
     }
     elTable.appendChild(elRow);
-
 }
-
-//Created listOfPlaces array and set it empty.
 
 //Don't need 'var' because you can find each Store in the array ex:([1,2,3]), but added it anyways. Only added the things that are changin in the parameters for each place.
 var pike = new Store('First and Pike', 23, 65, 6.3);

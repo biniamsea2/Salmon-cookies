@@ -16,3 +16,19 @@ th{
 td{
     text-align: center;
 }
+#salmon_form{
+    padding:5mm;
+}
+h1{
+    font-size: 25mm;
+    padding:10mm;
+    text-align: center;
+    color:rgb(238, 148, 178);
+    font-weight: bold;
+    font-style: italic;
+    
+}
+a{
+    margin: 5mm;
+    padding:0;
+}

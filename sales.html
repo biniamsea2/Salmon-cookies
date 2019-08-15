@@ -6,8 +6,41 @@
     <link rel="stylesheet" href="style.css"/>
   </head>
   <body>
-    <h1>Store Sales</h1> 
-    <table id="tableChart"></table>
+    <form id="salmon_form">
+      <fieldset>
+        <label for= "storeName">Store Name:</label>
+        <input type = "text" name="StoreName" placeholder="Enter the Store Name" minlength="3" required>
+      </fieldset>
+      <fieldset>
+          <label for= "minCusthour">Minimum customer per hour:</label>
+          <input type = "number" name="minCusthour" placeholder="Enter the minimum amount of customers per hour" minlength="1" required>
+      </fieldset>
+      <fieldset>
+            <label for= "maxCusthour">Maximum customer per hour:</label>
+            <input type = "number" name="maxCusthour" placeholder="Enter the Maximum amount of customers per hour" minlength="1" required>
+      </fieldset>
+      <fieldset>
+              <label for= "avgCookSale">Average Cookie sold per hour:</label>
+              <input type = "number" name="avgCookSale" placeholder="Enter the average amount of cookies sold per hour" minlength="1" required>
+      </fieldset>
+      <button id = "submit_btn" type = "submit">Add Store Info</button>
+    </form>
+<section>
+  
+  <table>
+    <thead>
+      <th>Store Name</th>
+      <th>Time</th>
+      <th>Minimum customer</th>
+      <th>Maximum customer</th>
+      <th>Average Cookie sold per hour</th>
+    </thead>
+    <tbody id= "tableChart">
+      <!--table info goes here-->
+    </tbody>
+  </table>
+</section>
+
     <script src="app.js"></script>
   </body>
 </html>
