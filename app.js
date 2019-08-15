@@ -1,11 +1,11 @@
 'use strict';
 
 var time = ['6am', ' 7am', ' 8am', ' 9am', ' 10am', ' 11am', ' 12pm', ' 1pm', ' 2pm', ' 3pm', ' 4pm', ' 5pm', ' 6pm', ' 7pm', ' 8pm'];
-var elTable = document.getElementById('tableChart')
+var elTable = document.getElementById('tableChart');
 var listOfPlaces = [];
 
 
-function Store(storeName, minCusthour, maxCusthour, avgCookSale) {//only need to add the things that are changing between each location.But I added them all just becuase. If you want to remove you must remove the ones under this comment as well.
+function Store(storeName, minCusthour, maxCusthour, avgCookSale) {
     this.storeName = storeName;
     this.minCusthour = minCusthour;
     this.maxCusthour = maxCusthour;
@@ -15,7 +15,7 @@ function Store(storeName, minCusthour, maxCusthour, avgCookSale) {//only need to
     this.totalCookies = 0;
 }
 
-function formData(event); {
+function formData(event) {
     event.preventDefault();
     var storeName = event.target.storeName.value;
     var minCusthour = event.target.minCusthour.value;
@@ -26,20 +26,20 @@ function formData(event); {
 
     createTable();
     form.reset();
-    console.log('history', listOfPlaces)
-}
+    console.log('history', listOfPlaces);
+};
 
 function CreateTable() {
     var row;
     for (var i = 0; i < listOfPlaces.length; i++) {
         row = document.createElement('tr');
         row.innerHTML = '<td>' + listOfPlaces[i].storeName + '</td>' +
-            '<td>' + listOfPlaces[i].minCusthour + '</td>' +
-            '<td>' + listOfPlaces[i].maxCusthour + '</td>' +
-            '<td>' + listOfPlaces[i].avgCookSale + '</td>'
+            listOfPlaces[i].minCusthour + '</td>'
     }
+
     elTable.appendChild(row);
 }
+var form = document.getElementById('salmon_form');
 form.addEventListner('Submit', formData);
 
 // creates avg customer for each hour from 6am to 8pm.
@@ -109,10 +109,9 @@ var seattle = new Store('Seattle Center', 11, 38, 3.7);
 var cap = new Store('Capitol Hill', 20, 38, 2.3);
 var alki = new Store('Alki Beach', 2, 16, 4.6);
 
-//made for loop that will console.log each Store in the listOfPlaces array.
 tableHeader();
 for (var i = 0; i < listOfPlaces.length; i++) {
-    listOfPlaces[i].custHour();
+    listOfPlaces[i].avgcustHour();
     listOfPlaces[i].cookiesPerCust();
     listOfPlaces[i].showData();
 };
