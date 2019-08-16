@@ -1,58 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>salmon cookies</title>
-    <link rel="stylesheet" href="reset.css"/>    
-    <link rel="stylesheet" href="style.css"/>
-  </head>
-  <body>
-    <form id="salmon_form">
-      <fieldset>
-        <label for= "storeName">Store Name:</label>
-        <input type = "text" name="StoreName" placeholder="Enter the Store Name" minlength="3" required>
-      </fieldset>
-      <fieldset>
-          <label for= "minCusthour">Minimum customer per hour:</label>
-          <input type = "number" name="minCusthour" placeholder="Enter the minimum amount of customers per hour" minlength="1" required>
-      </fieldset>
-      <fieldset>
-            <label for= "maxCusthour">Maximum customer per hour:</label>
-            <input type = "number" name="maxCusthour" placeholder="Enter the Maximum amount of customers per hour" minlength="1" required>
-      </fieldset>
-      <fieldset>
-              <label for= "avgCookSale">Average Cookie sold per hour:</label>
-              <input type = "number" name="avgCookSale" placeholder="Enter the average amount of cookies sold per hour" minlength="1" required>
-      </fieldset>
-      <!-- <button id = "submit_btn" type = "submit">Add Store Info</button> -->
-      <input type = "submit" value= "submit"> 
-    </form>
-<section>
-  <table>
-    <thead>
-      <tr>
-      <th>Store Name</th>
-      <th>6am</th>
-      <th>7am</th>
-      <th>8am</th>
-      <th>9am</th>
-      <th>10am</th>
-      <th>11am</th>
-      <th>12pm</th>
-      <th>1pm</th>
-      <th>2pm</th>
-      <th>3pm</th>
-      <th>4pm</th>
-      <th>5pm</th>
-      <th>6pm</th>
-      <th>7pm</th>
-      <th>8pm</th>
-      <th>Daily Total</th>
-      </tr>
-    </thead>
-    <tbody id= "tableChart"></tbody>
-  </table>
-</section> 
 
-    <script src="app.js"></script>
-  </body>
+<head>
+  <title>salmon cookies</title>
+  <link rel="stylesheet" href="reset.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <form id="salmon_form">
+    <fieldset>
+      <label for="storeName">Store Name:</label>
+      <input type="text" name="storeName" placeholder="Enter the Store Name" minlength="3" required>
+    </fieldset>
+    <fieldset>
+      <label for="minCusthour">Minimum customer per hour:</label>
+      <input type="number" name="minCusthour" placeholder="Enter the minimum amount of customers per hour" minlength="1"
+        required>
+    </fieldset>
+    <fieldset>
+      <label for="maxCusthour">Maximum customer per hour:</label>
+      <input type="number" name="maxCusthour" placeholder="Enter the Maximum amount of customers per hour" minlength="1"
+        required>
+    </fieldset>
+    <fieldset>
+      <label for="avgCookSale">Average Cookie sold per hour:</label>
+      <input type="number" name="avgCookSale" placeholder="Enter the average amount of cookies sold per hour"
+        minlength="1" required>
+    </fieldset>
+    <!-- <button id = "submit_btn" type = "submit">Add Store Info</button> -->
+    <input type="submit" value="submit">
+  </form>
+  <section>
+    <table id="tableChart">
+      <tr>
+        <td>
+          kkdkd
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+
 </html>
