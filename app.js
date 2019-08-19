@@ -23,7 +23,7 @@ function Store(storeName, minCusthour, maxCusthour, avgCookSale) {
     };
     this.cookiesPerCust = function () {
         for (var j = 0; j < time.length; j++) {
-            this.totalCookies += this.avgCusthour[j];
+            this.totalCookies = this.totalCookies + avgCookSale[j];
         }
     };
     this.showData = function () {
@@ -53,7 +53,7 @@ function formData(event) {
 
     listOfPlaces[listOfPlaces.length - 1].custHour();
     listOfPlaces[listOfPlaces.length - 1].cookiesPerCust();
-    elTable.innerHTML = ''
+    elTable.innerHTML = '' 
     createTable();
     form.reset();
     console.log('history', listOfPlaces);
@@ -97,16 +97,15 @@ var tableFooter = function () {
     elTh.textContent = 'Total Cookies: ';
     elRow.appendChild(elTh);
 
-    for (i = 0; i < time.length; i++) { //calculate total for each store
+    for (i = 0; i < time.length; i++) { 
         var total = document.createElement('th');
-        total.textContent = 'total';
+        total.textContent = '';
         elRow.appendChild(total);
 
     }
     elTable.appendChild(elRow);
 }
 
-//Don't need 'var' because you can find each Store in the array ex:([1,2,3]), but added it anyways. Only added the things that are changin in the parameters for each place.
 var pike = new Store('First and Pike', 23, 65, 6.3);
 var seaTac = new Store('SeaTac', 3, 24, 1.2);
 var seattle = new Store('Seattle Center', 11, 38, 3.7);
